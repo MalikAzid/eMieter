@@ -1,0 +1,130 @@
+﻿@model List<tblTenancy>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var _rentalProperty = (tblRentalProperty)ViewBag.RentalProperty;
+    tblTenancy tenancy = new tblTenancy();
+    tenancy.RentalPropertyId = _rentalProperty.Id;
+    tenancy.tblTenant = new tblTenant();
+}
+<a href="/RentalProperty/Index/@_rentalProperty.HouseId" class="btn btn-warning mb-3"> @Resource.Back</a>
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>@Resource.ManageRentalPropertyDetail </h4>
+            </div>
+            <div class="col-sm-6">
+                <a href="Javascript:;" onclick="EditRentalProperty()" class="btn btn-info pull-right ml-2">@Resource.Edit</a>
+                <a href="javascript:;" onclick="DeleteRentalProperty('@_rentalProperty.Id','@_rentalProperty.HouseId')" class="btn btn-danger pull-right">@Resource.Delete</a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="card-body" id="divRentalPropertyDetail">
+        @Html.Partial("_RentalPropertyDetail", _rentalProperty)
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <a href="Javascript:;" id="btnTenancy" class="btn btn-primary pull-right"> @Resource.AddTenancy</a>
+    </div>
+    <div class="card-body" id="divTenancyList">
+        @Html.Partial("_TenancyList", Model)
+    </div>
+</div>
+@Html.Partial("_AddEditRentalProperty", _rentalProperty)
+
+@Html.Partial("_AddEditTenancy", tenancy)
+
+<script>
+     if (window.location.href.endsWith("del")) {
+         swal("", "@Resource.Your_record_has_been_deleted_", "success");
+         history.pushState('data', '', '/Tenancy/Index/@_rentalProperty.Id');
+    }
+    $(".sidebar-menu").find("li").removeClass("active");
+    $("#liHouses").addClass("active");
+    $("#btnTenancy").click(function () {
+        $(document).find("#txtTenantId").val("");
+        $(document).find("#txtRentalStartDate").val("");
+        $(document).find("#txtRentalEndDate").val("");
+        $(document).find("#txtRentalCostNetMonthly").val("");
+        $(document).find("#txtRentalAdditionalCostsAkonto").val("");
+        $(document).find("#hdfTenancyScreen").val("List");
+        $(document).find("#AddEditTenancy").modal("show");
+    });
+
+    $(document).on("click","#btnAddEditTenancy",function () {
+        var frm = $("#frmTenancySubmit");
+        if (frm.valid()) {
+            if (new Date($(document).find("#txtRentalStartDate").val()) > new Date($(document).find("#txtRentalEndDate").val())) {
+                swal("", "Rental end date should be greater than rental start date.", "error");
+                return false;
+            }
+            $(".loader").show();
+            $.post("/Tenancy/AddEdit", frm.serialize(), function (res) {
+                $(".loader").hide();
+                if (res.message != undefined) {
+                    swal("", "" + res.message, "success");
+                    return false;
+                }
+                $("#divTenancyList").html(res);
+                $("#AddEditTenancy").modal("hide");
+                swal("", "@Resource.Your_has_been_saved_successfully_", "success");
+            });
+        }
+    });
+</script>
+<script>
+
+    $(document).on("click","#btnAddEditRentalProperty",function () {
+        var frm = $("#frmRentalPropertySubmit");
+        if (frm.valid()) {
+            $(".loader").show();
+            $.post("/RentalProperty/AddEdit", frm.serialize(), function (res) {
+                $(".loader").hide();
+                if (res.message != undefined) {
+                    swal("", "" + res.message, "error");
+                    return false;
+                }
+                $("#divRentalPropertyDetail").html(res);
+                $(document).find("#AddEditRentalProperty").modal("hide");
+                swal("", "@Resource.Your_has_been_saved_successfully_", "success");
+            });
+        }
+    });
+    function DeleteRentalProperty(Id,houseId) {
+        swal({
+            title: "@Resource.Are_you_sure_",
+            text: "@Resource.you_want_to_delete_this_record_",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+            closeOnConfirm: false,
+            closeOnCancel: true
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        type: 'Post',
+                        url: "/RentalProperty/Delete",
+                        data: { Id: Id, houseId: houseId },
+                        success: function (result) {
+                            swal("", "@Resource.Your_record_has_been_deleted_", "success");
+                            location.href = "/RentalProperty/Index/" + houseId + "?del";
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                        }
+                    });
+                }
+            });
+    }
+    function EditRentalProperty() {
+        $(document).find("#hdfRentalPropertyScreen").val("Detail");
+        $("#AddEditRentalProperty").modal("show");
+    }
+</script>

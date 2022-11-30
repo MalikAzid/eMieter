@@ -1,0 +1,67 @@
+﻿@model List<tblUser>
+@{
+    ViewData["Title"] = Resource.Manage_Users;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var _user = new tblUser();
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>@Resource.Manage_Users </h4>
+            </div>
+            <div class="col-sm-6">
+                <a href="Javascript:;" id="btnUser" class="btn btn-primary pull-right"> @Resource.Add_User</a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body" id="divUserList">
+        @Html.Partial("_UserList", Model)
+    </div>
+</div>
+@Html.Partial("_AddEditUser", _user)
+
+<script>
+      if (window.location.href.endsWith("del")) {
+         swal("", "@Resource.Your_record_has_been_deleted_", "success");
+         history.pushState('data', '', '/User/Index/');
+    }
+    $(".sidebar-menu").find("li").removeClass("active");
+    $("#liusers").addClass("active");
+
+    $("#btnUser").click(function () {
+        $(document).find("#txtEmail").val("");
+        $(document).find("#txtPassword").val("");
+        $(document).find("#hdfUserScreen").val("List");
+        $(document).find("#AddEditUser").modal("show");
+    });
+    $(document).on("click", "#btnAddEditUser", function () {
+        var frm = $("#frmUserSubmit");
+        if (frm.valid()) {
+            $(".loader").show();
+            $.post("/Account/IsEmailExist", { email: $("#txtEmail").val() }, function (res) {
+                if (res) {
+                    $(".loader").hide();
+                    swal("", "@Resource.EmailExist", "error");
+                    return false;
+                }
+                $.post("/User/AddEdit", frm.serialize(), function (res) {
+                    $(".loader").hide();
+                    if (res.message != undefined) {
+                        swal("", "" + res.message, "error");
+                        return false;
+                    }
+                    $("#divUserList").html(res);
+                    $(document).find("#AddEditUser").modal("hide");
+                    swal("", "@Resource.Your_has_been_saved_successfully_", "success");
+                });
+            });
+        }
+    });
+
+</script>
+

@@ -1,0 +1,76 @@
+﻿@model tblUser
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a href="/User/Index" class="btn btn-warning mb-3"> @Resource.Back</a>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-6">
+
+            </div>
+            <div class="col-sm-6">
+                <a href="javascript:;" onclick="DeleteUser('@Model.Id')" class="btn btn-danger pull-right ml-2">@Resource.Delete</a>
+                <a href="Javascript:;" onclick="EditUser()" class="btn btn-info pull-right">@Resource.Edit</a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="card-body" id="divHouseDetail">
+        @Html.Partial("_UserDetail", Model)
+    </div>
+</div>
+@Html.Partial("_AddEditUser", Model)
+
+<script>
+        $(document).on("click", "#btnAddEditUser", function () {
+        var frm = $("#frmUserSubmit");
+        if (frm.valid()) {
+            $(".loader").show();
+            $.post("/User/AddEdit", frm.serialize(), function (res) {
+                $(".loader").hide();
+                if (res.message != undefined) {
+                    swal("", "" + res.message, "error");
+                    return false;
+                }
+                $("#divHouseDetail").html(res);
+                $(document).find("#AddEditUser").modal("hide");
+                swal("", "@Resource.Your_has_been_saved_successfully_", "success");
+            });
+        }
+    });
+
+    function DeleteUser(Id) {
+        swal({
+            title: "@Resource.Are_you_sure_",
+            text: "@Resource.you_want_to_delete_this_record_",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+            closeOnConfirm: false,
+            closeOnCancel: true
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        type: 'Post',
+                        url: "/User/Delete",
+                        data: { Id: Id },
+                        success: function (result) {
+                            location.href = "/User/Index?del";
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                        }
+                    });
+                }
+            });
+    }
+    function EditUser(Id) {
+        $(document).find("#hdfUserScreen").val("Detail");
+            $("#AddEditUser").modal("show");
+    }
+</script>

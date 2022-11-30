@@ -1,0 +1,53 @@
+﻿@model tblRentalProperty
+
+<div class="modal fade" id="AddEditRentalProperty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Resource.Add_Edit_Rental_Property</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/" method="post" id="frmRentalPropertySubmit">
+                    <input type="hidden" asp-for="HouseId" />
+                    <input type="hidden" id="hdfRentalPropertyId" asp-for="Id" />
+                    <input type="hidden" id="hdfRentalPropertyScreen" name="Screen" />
+                    <div class="form-group">
+                        <span>@Resource.EWID</span>
+                        <input type="text" class="form-control" id="txtEWID" asp-for="EWID" />
+                        <span asp-validation-for="EWID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.Living_Area_Square_Meters</span>
+                        <input type="number" class="form-control" id="txtLivingAreaSquareMeters" asp-for="LivingAreaSquareMeters" />
+                        <span asp-validation-for="LivingAreaSquareMeters" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.Room_Count</span>
+                        <input type="number" class="form-control" id="txtRoomCount" asp-for="RoomCount" />
+                        <span asp-validation-for="RoomCount" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.Floor</span>
+                        <input type="text" class="form-control" id="txtFloor" asp-for="Floor" />
+                        <span asp-validation-for="Floor" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.Location</span>
+                        <input type="text" class="form-control" id="txtLocation" asp-for="Location" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-primary" id="btnAddEditRentalProperty">@Resource.Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">@Resource.Close</button>
+            </div>
+        </div>
+    </div>
+</div>

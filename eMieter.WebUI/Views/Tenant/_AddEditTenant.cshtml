@@ -1,0 +1,46 @@
+﻿@model tblTenant
+
+<div class="modal fade" id="AddEditTenant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Resource.Add_EditTenant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/" method="post" id="frmTenantSubmit">
+                    <input type="hidden" id="hdfId" asp-for="Id" />
+                    <input type="hidden" id="hdfTenantScreen" name="Screen" />
+                    <div class="form-group">
+                        <span>@Resource.FirstName</span>
+                        <input type="text" class="form-control" asp-for="FirstName" id="txtFirstName" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.LastName</span>
+                        <input type="text" class="form-control" asp-for="LastName" id="txtLastName" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.DateOfBirth</span>
+                        <input type="date" class="form-control" asp-for="DateOfBirth" id="txtDateOfBirth" />
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.Rate</span>
+                        <input type="number" class="form-control" asp-for="Rate" id="txtRate" />
+                        <span asp-validation-for="Rate" class="text-danger"></span>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-primary" id="btnAddEditTenant">@Resource.Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">@Resource.Close</button>
+            </div>
+        </div>
+    </div>
+</div>

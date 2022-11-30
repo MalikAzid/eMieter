@@ -1,0 +1,32 @@
+﻿@model List<tblHouse>
+
+<table class="table table-striped" id="tableHouseList">
+    <thead>
+        <tr>
+
+            <th>@Resource.Category</th>
+            <th>@Resource.Street</th>
+            <th>@Resource.PostCode</th>
+            <th>@Resource.City</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            @foreach (var item in Model)
+            {
+                <tr class="gorental tablerowhover" data-Id="@item.Id">
+                    <td>@item.Category</td>
+                    <td>@item.Street</td>
+                    <td>@item.PostCode</td>
+                    <td>@item.City</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<script>
+    $(".gorental").click(function () {
+        location.href = "/RentalProperty/Index/" + $(this).attr("data-Id");
+    });
+</script>

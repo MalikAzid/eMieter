@@ -1,0 +1,40 @@
+﻿@model tblTenancy
+
+<div class="row">
+    <div class="col-sm-12">
+        <label>@Resource.Tenant: </label> <span>@(Model.tblTenant == null ? "" : Model.tblTenant.FirstName + " " + Model.tblTenant.LastName)</span>
+    </div>
+    <div class="col-sm-12">
+        <label>@Resource.RentalStartDate: </label> <span>@(string.Format("{0:MM/dd/yyyy}",Model.RentalStartDate))</span>
+    </div>
+    <div class="col-sm-12">
+        <label>@Resource.RentalEndDate: </label> <span>@(Model.RentalEndDate == null?"": string.Format("{0:MM/dd/yyyy}",Model.RentalEndDate))</span>
+    </div>
+    <div class="col-sm-12">
+        <label>@Resource.RentalCostNetMonthly: </label> <span>@Model.RentalCostNetMonthly</span>
+    </div>
+    <div class="col-sm-12">
+        <label>@Resource.RentalAdditionalCostsAkonto: </label> <span>@Model.RentalAdditionalCostsAkonto</span>
+    </div>
+    <div class="col-sm-12">
+        <label>@Resource.FirstName: </label> <span>@Model.tblTenant.FirstName</span>
+    </div>
+    <div class="col-sm-12">
+        <label>@Resource.LastName: </label> <span>@Model.tblTenant.LastName</span>
+    </div>
+    <div class="col-sm-12">
+        <label>@Resource.DateOfBirth: </label> <span>@(string.Format("{0:MM/dd/yyyy}",Model.tblTenant.DateOfBirth))</span>
+    </div>
+    <div class="col-sm-12">
+        <label>@Resource.Rate: </label>  <div class="rating-box">
+                                             <div class="rating-container">
+                                                 @Html.RadioButtonFor(i => i.tblTenant.Rate, "5", new { id = "star-5", @class = "PSR",disabled="disabled" }) <label for="star-5"><i class="fa fa-star"></i></label>
+                                                 @Html.RadioButtonFor(i => i.tblTenant.Rate, "4", new { id = "star-4", @class = "PSR",disabled="disabled" }) <label for="star-4"><i class="fa fa-star"></i></label>
+                                                 @Html.RadioButtonFor(i => i.tblTenant.Rate, "3", new { id = "star-3", @class = "PSR",disabled="disabled" }) <label for="star-3"><i class="fa fa-star"></i></label>
+                                                 @Html.RadioButtonFor(i => i.tblTenant.Rate, "2", new { id = "star-2", @class = "PSR",disabled="disabled" }) <label for="star-2"><i class="fa fa-star"></i></label>
+                                                 @Html.RadioButtonFor(i => i.tblTenant.Rate, "1", new { id = "star-1", @class = "PSR",disabled="disabled" }) <label for="star-1"><i class="fa fa-star"></i></label>
+                                             </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

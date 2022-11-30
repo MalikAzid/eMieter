@@ -1,0 +1,76 @@
+﻿@model tblTenant
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a href="/Tenant/Index" class="btn btn-warning mb-3"> @Resource.Back</a>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-6">
+
+            </div>
+            <div class="col-sm-6">
+                <a href="javascript:;" onclick="DeleteTenant('@Model.Id')" class="btn btn-danger pull-right ml-2">@Resource.Delete</a>
+                <a href="Javascript:;" onclick="EditTenant()" class="btn btn-info pull-right">@Resource.Edit</a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="card-body" id="divTenantDetail">
+        @Html.Partial("_TenantDetail", Model)
+    </div>
+</div>
+@Html.Partial("_AddEditTenant", Model)
+
+<script>
+        $(document).on("click", "#btnAddEditTenant", function () {
+        var frm = $("#frmTenantSubmit");
+        if (frm.valid()) {
+            $(".loader").show();
+            $.post("/Tenant/AddEdit", frm.serialize(), function (res) {
+                $(".loader").hide();
+                if (res.message != undefined) {
+                    swal("", "" + res.message, "error");
+                    return false;
+                }
+                $("#divTenantDetail").html(res);
+                $(document).find("#AddEditTenant").modal("hide");
+                swal("", "@Resource.Your_has_been_saved_successfully_", "success");
+            });
+        }
+    });
+
+    function DeleteTenant(Id) {
+        swal({
+            title: "@Resource.Are_you_sure_",
+            text: "@Resource.you_want_to_delete_this_record_",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+            closeOnConfirm: false,
+            closeOnCancel: true
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        type: 'Post',
+                        url: "/Tenant/Delete",
+                        data: { Id: Id },
+                        success: function (result) {
+                            location.href = "/Tenant/Index?del";
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                        }
+                    });
+                }
+            });
+    }
+    function EditTenant(Id) {
+        $(document).find("#hdfTenantScreen").val("Detail");
+            $("#AddEditTenant").modal("show");
+    }
+</script>

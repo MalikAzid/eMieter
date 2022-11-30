@@ -1,0 +1,120 @@
+﻿@model UserVM
+@inject MultiLanguage _languages
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- auth-register.html  21 Nov 2019 04:05:01 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Register</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="~/assets/css/app.min.css">
+    <link rel="stylesheet" href="~/assets/bundles/jquery-selectric/selectric.css">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="~/assets/css/components.css">
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="~/assets/css/custom.css">
+    <link rel='shortcut icon' type='image/x-icon' href='~/assets/img/favicon.ico' />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="~/assets/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="~/assets/bootstrap-sweetalert/sweetalert.js"></script>
+</head>
+
+<body>
+    <div class="loader"></div>
+    <div id="app">
+        <section class="section">
+            <div class="col-sm-3 pull-right mt-2">
+                <span>Language</span>
+                <select class="form-control" asp-items="@(new SelectList(_languages.AvailableLanguages(),"LanguageCultureName","LanguageFullName"))">
+                </select>
+            </div>
+            <div class="clearfix"></div>
+            <div class="container mt-5">
+                @*<div class="form-group text-center">
+                        <img src="~/Images/Logo.png" style="height:100%;width:13%;" />
+                    </div>*@
+                <div class="row">
+                    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h4>Register</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="/Account/Register" method="POST" id="frmRegister">
+                                    <div class="form-group">
+                                        <label for="frist_name">First Name</label>
+                                        <input id="frist_name" type="text" class="form-control" asp-for="FirstName" autofocus>
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last_name">Last Name</label>
+                                        <input id="last_name" type="text" class="form-control" asp-for="LastName">
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input id="email" type="email" class="form-control" asp-for="Email">
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password" class="d-block">Password</label>
+                                        <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" asp-for="Password" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" id="btnRegister" class="btn btn-primary btn-lg btn-block">
+                                            Register
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="mb-4 text-muted text-center">
+                                Already Registered? <a href="/Account/Login">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $("#btnRegister").click(function () {
+            var frm = $("#frmRegister");
+            if (frm.valid()) {
+                $.post("/Account/IsEmailExist", { email: $("#email").val() }, function (res) {
+                    console.log(res);
+                    if (res) {
+                        swal("", "@Resource.EmailExist", "error");
+                        return false;
+                    }
+                    frm.submit();
+                });
+            }
+        });
+    </script>
+    <!-- General JS Scripts -->
+    <script src="~/assets/js/app.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <!-- JS Libraies -->
+    <!-- Page Specific JS File -->
+    <!-- Template JS File -->
+    <script src="~/assets/js/scripts.js"></script>
+    <!-- Custom JS File -->
+    <script src="~/assets/js/custom.js"></script>
+</body>
+
+<!-- auth-register.html  21 Nov 2019 04:05:02 GMT -->
+</html>
+

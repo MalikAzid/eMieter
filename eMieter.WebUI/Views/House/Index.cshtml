@@ -1,0 +1,61 @@
+﻿@model List<tblHouse>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+var _house = new tblHouse();
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>@Resource.Manage_House </h4>
+            </div>
+            <div class="col-sm-6">
+                <a href="Javascript:;" id="btnHouse" class="btn btn-primary pull-right"> @Resource.Add_House</a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body" id="divHouseList">
+        @Html.Partial("_HouseList", Model)
+    </div>
+</div>
+@Html.Partial("_AddEditHouse",_house)
+<script>
+    if (window.location.href.endsWith("del")) {
+        swal("", "@Resource.Your_record_has_been_deleted_", "success");
+        history.pushState('data', '','/House/Index');
+    }
+    $(".sidebar-menu").find("li").removeClass("active");
+    $("#liHouses").addClass("active");
+    $("#btnHouse").click(function () {
+        $(document).find("#txtCategory").val("");
+        $(document).find("#txtStreet").val("");
+        $(document).find("#txtPostCode").val("");
+        $(document).find("#txtCity").val("");
+        $(document).find("#hdfHouseScreen").val("List");
+        $(document).find("#AddEditHouse").modal("show");
+    });
+    $(document).on("click", "#btnAddEditHouse", function () {
+        var frm = $("#frmHouseSubmit");
+        if (frm.valid()) {
+            $(".loader").show();
+            $.post("/House/AddEdit", frm.serialize(), function (res) {
+                $(".loader").hide();
+                if (res.message != undefined) {
+                    swal("", "" + res.message, "error");
+                    return false;
+                }
+                $("#divHouseList").html(res);
+                $(document).find("#AddEditHouse").modal("hide");
+                swal("", "@Resource.Your_has_been_saved_successfully_", "success");
+            });
+        }
+       
+    });
+</script>
+
+

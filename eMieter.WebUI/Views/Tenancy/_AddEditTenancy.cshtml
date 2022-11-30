@@ -1,0 +1,104 @@
+﻿@model tblTenancy
+@inject eMieter.Services.BLL.Tenants _tenants
+
+    <style>
+        .rating-box {
+            display: inline-block;
+        }
+
+            .rating-box .rating-container {
+                direction: rtl !important;
+            }
+
+                .rating-box .rating-container label {
+                    display: inline-block;
+                    color: #d4d4d4;
+                    cursor: pointer;
+                    font-size: 30px;
+                    transition: color 0.2s;
+                }
+
+                .rating-box .rating-container input {
+                    display: none;
+                }
+
+                    .rating-box .rating-container label:hover, .rating-box .rating-container label:hover ~ label, .rating-box .rating-container input:checked ~ label {
+                        color: gold;
+                    }
+    </style>
+<div class="modal fade" id="AddEditTenancy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Resource.Add_EditTenancy</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/" method="post" id="frmTenancySubmit">
+                    <input type="hidden" id="hdfId" asp-for="Id" />
+                    <input type="hidden" asp-for="tblTenant.Id" />
+                    <input type="hidden" asp-for="TenantId" />
+                    <input type="hidden" asp-for="RentalPropertyId" />
+                    <input type="hidden" id="hdfTenancyScreen" name="Screen" />
+                    <div class="form-group">
+                        <span>@Resource.RentalStartDate</span>
+                        <input type="date" class="form-control" asp-for="RentalStartDate" id="txtRentalStartDate" />
+                        <span asp-validation-for="RentalStartDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.RentalEndDate</span>
+                        <input type="date" class="form-control" asp-for="RentalEndDate" id="txtRentalEndDate" />
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.RentalCostNetMonthly</span>
+                        <input type="number" class="form-control" asp-for="RentalCostNetMonthly" id="txtRentalCostNetMonthly" />
+                        <span asp-validation-for="RentalCostNetMonthly" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.RentalAdditionalCostsAkonto</span>
+                        <input type="number" class="form-control" asp-for="RentalAdditionalCostsAkonto" id="txtRentalAdditionalCostsAkonto" />
+                        <span asp-validation-for="RentalAdditionalCostsAkonto" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.FirstName</span>
+                        <input type="text" class="form-control" asp-for="tblTenant.FirstName" id="txtFirstName" />
+                        <span asp-validation-for="tblTenant.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.LastName</span>
+                        <input type="text" class="form-control" asp-for="tblTenant.LastName" id="txtLastName" />
+                        <span asp-validation-for="tblTenant.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.DateOfBirth</span>
+                        <input type="date" class="form-control" asp-for="tblTenant.DateOfBirth" id="txtDateOfBirth" />
+                        <span asp-validation-for="tblTenant.DateOfBirth" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span>@Resource.Rate</span>
+                        <br />
+                        <div class="rating-box">
+                            <div class="rating-container" style="font-size:18px">
+                                @Html.RadioButtonFor(i => i.tblTenant.Rate, "5", new { id = "star-5", @class = "PSR" }) <label for="star-5"><i class="fa fa-star"></i></label>
+                                @Html.RadioButtonFor(i => i.tblTenant.Rate, "4", new { id = "star-4", @class = "PSR" }) <label for="star-4"><i class="fa fa-star"></i></label>
+                                @Html.RadioButtonFor(i => i.tblTenant.Rate, "3", new { id = "star-3", @class = "PSR" }) <label for="star-3"><i class="fa fa-star"></i></label>
+                                @Html.RadioButtonFor(i => i.tblTenant.Rate, "2", new { id = "star-2", @class = "PSR" }) <label for="star-2"><i class="fa fa-star"></i></label>
+                                @Html.RadioButtonFor(i => i.tblTenant.Rate, "1", new { id = "star-1", @class = "PSR" }) <label for="star-1"><i class="fa fa-star"></i></label>
+                            </div>
+                        </div>
+                        @*<input type="number" class="form-control" asp-for="tblTenant.Rate" id="txtRate" />*@
+                        <span asp-validation-for="tblTenant.Rate" class="text-danger"></span>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-primary" id="btnAddEditTenancy">@Resource.Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">@Resource.Close</button>
+            </div>
+        </div>
+    </div>
+</div>

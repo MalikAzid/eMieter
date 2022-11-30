@@ -1,0 +1,17 @@
+﻿@model tblTenant
+
+<div class="row">
+    <div class="col-sm-12">
+        <label>@Resource.FirstName: </label> <span>@Model.FirstName</span>
+    </div>
+    <div class="col-sm-12">
+        <label>@Resource.LastName: </label> <span>@Model.LastName</span>
+    </div>
+    <div class="col-sm-12">
+        <label>@Resource.DateOfBirth: </label> <span>@(string.Format("{0:MM/dd/yyyy}",Model.DateOfBirth))</span>
+    </div>
+    <div class="col-sm-12">
+        <label>@Resource.Rate: </label> <span>@Model.Rate</span>
+    </div>
+    <div class="clearfix"></div>
+</div>

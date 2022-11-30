@@ -1,0 +1,62 @@
+﻿@model List<tblTenant>
+@{
+    ViewData["Title"] = Resource.ManageTenant;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var _Tenant = new tblTenant();
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>@Resource.ManageTenant </h4>
+            </div>
+            <div class="col-sm-6">
+                <a href="Javascript:;" id="btnTenant" class="btn btn-primary pull-right"> @Resource.AddTenant</a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body" id="divTenantList">
+        @Html.Partial("_TenantList", Model)
+    </div>
+</div>
+@Html.Partial("_AddEditTenant", _Tenant)
+
+<script>
+      if (window.location.href.endsWith("del")) {
+         swal("", "@Resource.Your_record_has_been_deleted_", "success");
+         history.pushState('data', '', '/Tenant/Index/');
+    }
+    $(".sidebar-menu").find("li").removeClass("active");
+    $("#liTenants").addClass("active");
+
+    $("#btnTenant").click(function () {
+        $(document).find("#txtFirstName").val("");
+        $(document).find("#txtLastName").val("");
+        $(document).find("#txtDateOfBirth").val("");
+        $(document).find("#txtRate").val("");
+        $(document).find("#hdfTenantScreen").val("List");
+        $(document).find("#AddEditTenant").modal("show");
+    });
+    $(document).on("click", "#btnAddEditTenant", function () {
+        var frm = $("#frmTenantSubmit");
+        if (frm.valid()) {
+            $(".loader").show();
+            $.post("/Tenant/AddEdit", frm.serialize(), function (res) {
+                $(".loader").hide();
+                if (res.message != undefined) {
+                    swal("", "" + res.message, "error");
+                    return false;
+                }
+                $("#divTenantList").html(res);
+                $(document).find("#AddEditTenant").modal("hide");
+                swal("", "@Resource.Your_has_been_saved_successfully_", "success");
+            });
+        }
+    });
+
+</script>
+

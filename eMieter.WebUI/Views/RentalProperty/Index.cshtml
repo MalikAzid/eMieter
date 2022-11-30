@@ -1,0 +1,124 @@
+﻿@model List<tblRentalProperty>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var _house = (tblHouse)ViewBag.House;
+    var _rentalProperty = new tblRentalProperty();
+    _rentalProperty.HouseId = _house.Id;
+}
+<a href="/House/Index" class="btn btn-warning mb-3"> @Resource.Back</a>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>@Resource.ManageHouseDetail </h4>
+            </div>
+            <div class="col-sm-6">
+                <a href="javascript:;" onclick="DeleteHouse('@_house.Id')" class="btn btn-danger pull-right ml-2">@Resource.Delete</a>
+                <a href="Javascript:;" onclick="EditHouse()" class="btn btn-info pull-right">@Resource.Edit</a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="card-body" id="divHouseDetail">
+        @Html.Partial("_HouseDetail", _house)
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <a href="Javascript:;" id="btnRentalProperty" class="btn btn-primary pull-right"> @Resource.Add_Rental_Property</a>
+    </div>
+    <div class="card-body" id="divRentalPropertyList">
+        @Html.Partial("_RentalPropertyList", Model)
+    </div>
+</div>
+@Html.Partial("_AddEditRentalProperty", _rentalProperty)
+
+@Html.Partial("_AddEditHouse", _house)
+<script>
+     if (window.location.href.endsWith("del")) {
+         swal("", "@Resource.Your_record_has_been_deleted_", "success");
+         history.pushState('data', '', '/RentalProperty/Index/@_house.Id');
+    }
+
+    $(".sidebar-menu").find("li").removeClass("active");
+    $("#liHouses").addClass("active");
+
+    $("#btnRentalProperty").click(function () {
+        $(document).find("#txtEWID").val("");
+        $(document).find("#txtLivingAreaSquareMeters").val("");
+        $(document).find("#txtRoomCount").val("");
+        $(document).find("#txtFloor").val("");
+        $(document).find("#txtLocation").val("");
+        $(document).find("#hdfRentalPropertyScreen").val("List");
+        $(document).find("#AddEditRentalProperty").modal("show");
+    });
+
+    $(document).on("click","#btnAddEditRentalProperty",function () {
+        var frm = $("#frmRentalPropertySubmit");
+        if (frm.valid()) {
+            $(".loader").show();
+            $.post("/RentalProperty/AddEdit", frm.serialize(), function (res) {
+                $(".loader").hide();
+                if (res.message != undefined) {
+                    swal("", "" + res.message, "success");
+                    return false;
+                }
+                $("#divRentalPropertyList").html(res);
+                $("#AddEditRentalProperty").modal("hide");
+                swal("", "@Resource.Your_has_been_saved_successfully_", "success");
+            });
+        }
+    });
+</script>
+
+<script>
+    $(document).on("click", "#btnAddEditHouse", function () {
+        var frm = $("#frmHouseSubmit");
+        if (frm.valid()) {
+            $(".loader").show();
+            $.post("/House/AddEdit", frm.serialize(), function (res) {
+                $(".loader").hide();
+                if (res.message != undefined) {
+                    swal("", "" + res.message, "error");
+                    return false;
+                }
+                $("#divHouseDetail").html(res);
+                $(document).find("#AddEditHouse").modal("hide");
+                swal("", "@Resource.Your_has_been_saved_successfully_", "success");
+            });
+        }
+    });
+    function DeleteHouse(Id) {
+        swal({
+            title: "@Resource.Are_you_sure_",
+            text: "@Resource.you_want_to_delete_this_record_",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+            closeOnConfirm: false,
+            closeOnCancel: true
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        type: 'Post',
+                        url: "/House/Delete",
+                        data: { Id: Id },
+                        success: function (result) {
+                            //swal("", "@Resource.Your_record_has_been_deleted_", "success");
+                            location.href = "/House/Index?del";
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                        }
+                    });
+                }
+            });
+    }
+    function EditHouse() {
+        $(document).find("#hdfHouseScreen").val("Detail");
+        $("#AddEditHouse").modal("show");
+    }
+</script>

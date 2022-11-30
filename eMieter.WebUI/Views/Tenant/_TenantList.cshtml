@@ -1,0 +1,35 @@
+﻿@model List<tblTenant>
+
+<table class="table table-striped" id="tableTenantList">
+    <thead>
+        <tr>
+
+            <th>@Resource.FirstName</th>
+            <th>@Resource.LastName</th>
+            <th>@Resource.DateOfBirth</th>
+            <th>@Resource.Rate</th>
+            <th>@Resource.Created_Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            @foreach (var item in Model)
+            {
+                <tr class="gorental tablerowhover" data-Id="@item.Id">
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@(string.Format("{0:MM/dd/yyyy}",item.DateOfBirth))</td>
+                    <td>@item.Rate</td>
+                    <td>@item.CreatedDate</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script>
+    $(".gorental").click(function () {
+        location.href = "/Tenant/Detail/" + $(this).attr("data-Id");
+    });
+</script>

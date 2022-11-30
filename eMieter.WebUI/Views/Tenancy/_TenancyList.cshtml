@@ -1,0 +1,40 @@
+﻿@model List<tblTenancy>
+
+<table class="table table-striped" id="tableTenancyList">
+    <thead>
+        <tr>
+
+            <th>@Resource.Tenant</th>
+            <th>@Resource.RentalStartDate</th>
+            <th>@Resource.RentalEndDate</th>
+            <th>@Resource.RentalCostNetMonthly</th>
+            <th>@Resource.RentalAdditionalCostsAkonto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            @foreach (var item in Model)
+            {
+                var isActive = "";
+                if (item.RentalStartDate <= DateTime.Now && item.RentalEndDate >= DateTime.Now)
+                {
+                    isActive = "activeRow";
+                }
+                <tr class="gorental tablerowhover @isActive" data-Id="@item.Id">
+                    <td>@(item.tblTenant == null ? "" : item.tblTenant.FirstName + " " + item.tblTenant.LastName)</td>
+                    <td>@(string.Format("{0:MM/dd/yyyy}",item.RentalStartDate))</td>
+                    <td>@(item.RentalEndDate == null?"": string.Format("{0:MM/dd/yyyy}",item.RentalEndDate))</td>
+                    <td>@item.RentalCostNetMonthly</td>
+                    <td>@item.RentalAdditionalCostsAkonto</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script>
+    $(".gorental").click(function () {
+        location.href = "/Tenancy/Detail/" + $(this).attr("data-Id");
+    });
+</script>
