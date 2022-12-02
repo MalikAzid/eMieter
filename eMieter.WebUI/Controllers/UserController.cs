@@ -10,14 +10,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eMieter.WebUI.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly Users _users;
         private readonly AppConfig _appConfig;
-        public UserController(Users users, AppConfig appConfig)
+        private readonly MultiLanguage _multiLanguage;
+
+        public UserController(Users users, AppConfig appConfig, MultiLanguage multiLanguage):base(multiLanguage)
         {
             _users = users;
             _appConfig = appConfig;
+            _multiLanguage = multiLanguage;
         }
 
         public IActionResult Index()
@@ -61,6 +64,11 @@ namespace eMieter.WebUI.Controllers
             _users.DeletUser(Id);
             var lst = _users.GetOwnerUserList(_appConfig.OwnerId);
             return PartialView("_UserList", lst);
+        }
+        public IActionResult ChangeLanguage(string lang)
+        {
+            _multiLanguage.SetLanguage(lang);
+            return Json("");
         }
     }
 }

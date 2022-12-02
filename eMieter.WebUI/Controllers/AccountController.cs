@@ -11,14 +11,18 @@ using System.Threading.Tasks;
 
 namespace eMieter.WebUI.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly Users _users;
         private readonly AppConfig _appConfig;
-        public AccountController(Users users, AppConfig appConfig)
+        private readonly MultiLanguage _multiLanguage;
+
+        public AccountController(Users users, AppConfig appConfig, MultiLanguage multiLanguage) :base(multiLanguage)
         {
             _users = users;
             _appConfig = appConfig;
+            _multiLanguage = multiLanguage;
+
         }
         [HttpGet]
         public IActionResult Register()
@@ -49,6 +53,15 @@ namespace eMieter.WebUI.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            string cookie = HttpContext.Request.Cookies["_eMU"];
+            if (!string.IsNullOrEmpty(cookie))
+            {
+                var _user = _users.GetUserbyId(Guid.Parse(cookie));
+                if (_user != null)
+                {
+                    return RedirectToAction("Index", "House");
+                }
+            }
             return View();
         }
         [HttpPost]
@@ -58,7 +71,7 @@ namespace eMieter.WebUI.Controllers
             if (user != null)
             {
                 _appConfig.SetSession(user, userVM.StayLogin);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "House");
             }
             else
             {
@@ -69,6 +82,7 @@ namespace eMieter.WebUI.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
+            Response.Cookies.Delete("_eMU");
             return RedirectToAction("Login", "Account");
         }
         public ActionResult IsEmailExist(string email)

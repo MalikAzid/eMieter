@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountCreateSuccessfully" xml:space="preserve">
+    <value>Your account has been created successfully.</value>
+  </data>
   <data name="Action" xml:space="preserve">
     <value>Action</value>
   </data>
@@ -153,6 +156,9 @@
   <data name="AllRequiredFields" xml:space="preserve">
     <value>Please fill all required fields.</value>
   </data>
+  <data name="AlreadyRegistered" xml:space="preserve">
+    <value>Already Registered?</value>
+  </data>
   <data name="Are you sure?" xml:space="preserve">
     <value>Are you sure?</value>
   </data>
@@ -162,6 +168,9 @@
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>Change Language</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
@@ -170,6 +179,9 @@
   </data>
   <data name="Created Date" xml:space="preserve">
     <value>Created Date</value>
+  </data>
+  <data name="CreateNewAccount" xml:space="preserve">
+    <value>Create new account?</value>
   </data>
   <data name="DateOfBirth" xml:space="preserve">
     <value>Date Of Birth</value>
@@ -186,8 +198,20 @@
   <data name="EmailExist" xml:space="preserve">
     <value>Email already exist in system.</value>
   </data>
+  <data name="EmailPasswordIncorrect" xml:space="preserve">
+    <value>Email or Password is incorrect.</value>
+  </data>
+  <data name="EndDateGreaterThan" xml:space="preserve">
+    <value>Rental end date should be greater than rental start date.</value>
+  </data>
   <data name="EWID" xml:space="preserve">
     <value>EWID</value>
+  </data>
+  <data name="FillEmail" xml:space="preserve">
+    <value>Please fill in your email</value>
+  </data>
+  <data name="FillPassword" xml:space="preserve">
+    <value>Please fill in your password</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>First Name</value>
@@ -207,6 +231,9 @@
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
   <data name="Manage House" xml:space="preserve">
     <value>Manage House</value>
   </data>
@@ -224,6 +251,9 @@
   </data>
   <data name="ManageTenancy" xml:space="preserve">
     <value>Manage Tenancy</value>
+  </data>
+  <data name="ManageTenancyDetail" xml:space="preserve">
+    <value>Manage Tenancy Detail</value>
   </data>
   <data name="ManageTenant" xml:space="preserve">
     <value>Manage Tenant</value>
@@ -263,6 +293,9 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="StayLogin" xml:space="preserve">
+    <value>Stay Logged In</value>
   </data>
   <data name="Street" xml:space="preserve">
     <value>Street</value>

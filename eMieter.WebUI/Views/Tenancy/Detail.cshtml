@@ -9,7 +9,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-sm-6">
-
+                <h4>@Resource.ManageTenancyDetail </h4>
             </div>
             <div class="col-sm-6">
                 <a href="javascript:;" onclick="DeleteTenancy('@Model.Id', '@Model.RentalPropertyId')" class="btn btn-danger pull-right ml-2">@Resource.Delete</a>
@@ -27,7 +27,11 @@
 <script>
         $(document).on("click", "#btnAddEditTenancy", function () {
         var frm = $("#frmTenancySubmit");
-        if (frm.valid()) {
+            if (frm.valid()) {
+            if (new Date($(document).find("#txtRentalStartDate").val()) > new Date($(document).find("#txtRentalEndDate").val())) {
+                swal("", "@Resource.EndDateGreaterThan", "error");
+                return false;
+            }
             $(".loader").show();
             $.post("/Tenancy/AddEdit", frm.serialize(), function (res) {
                 $(".loader").hide();

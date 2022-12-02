@@ -23,49 +23,13 @@ namespace eMieter.WebUI.Controllers
             var langCookie = Request.Cookies["culture"];
             if (langCookie != null)
             {
-                lang = "en";//langCookie;
+                lang = langCookie;
             }
             else
             {
-                //var userLanguage = "";// Request.UserLanguages;
-                //var userLang = userLanguage != null ? userLanguage[0] : "";
-                //if (userLang != "")
-                //{
-                //    lang = userLang;
-                //}
-                //else
-                //{
-                //}
                 lang = _multiLanguage.GetDefaultLanguage();
             }
             _multiLanguage.SetLanguage(lang);
-            //filterContext.Result = RedirectToAction("Index", "Home");// this.BeginExecuteCoreActionResult;
-            //base.OnActionExecuting(filterContext);
         }
-        //protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
-        //{
-        //    string lang = null;
-
-        //    var langCookie = Request.Cookies["culture"];
-        //    if (langCookie != null)
-        //    {
-        //        lang = langCookie;
-        //    }
-        //    else
-        //    {
-        //        //var userLanguage = "";// Request.UserLanguages;
-        //        //var userLang = userLanguage != null ? userLanguage[0] : "";
-        //        //if (userLang != "")
-        //        //{
-        //        //    lang = userLang;
-        //        //}
-        //        //else
-        //        //{
-        //        //}
-        //            lang = _multiLanguage.GetDefaultLanguage();
-        //    }
-        //    _multiLanguage.SetLanguage(lang);
-        //    return base.OnActionExecuting();
-        //}
     }
 }

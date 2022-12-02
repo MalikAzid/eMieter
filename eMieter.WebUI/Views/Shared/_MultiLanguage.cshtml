@@ -1,0 +1,15 @@
+﻿@inject MultiLanguage _languages
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor _httpContextAccessor
+
+@*<span>@Resource.ChangeLanguage</span>*@
+<select class="form-control" id="ddlMultiLang" asp-items="@(new SelectList(_languages.AvailableLanguages(),"LanguageCultureName","LanguageFullName",_httpContextAccessor.HttpContext.Request.Cookies["culture"]))">
+</select>
+<script>
+    $(document).ready(function () {
+        $("#ddlMultiLang").change(function () {
+            $.post("/User/ChangeLanguage", { lang: $(this).val() }, function (res) {
+                location.reload(true);
+            })
+        });
+    });
+</script>

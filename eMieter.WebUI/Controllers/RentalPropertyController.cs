@@ -10,21 +10,33 @@ using System.Threading.Tasks;
 
 namespace eMieter.WebUI.Controllers
 {
-    public class RentalPropertyController : Controller
+    public class RentalPropertyController : BaseController
     {
         private readonly RentalPropertys _rentalPropertys;
         private readonly Houses _houses;
         private readonly AppConfig _appConfig;
-        public RentalPropertyController(Houses houses,RentalPropertys rentalPropertys, AppConfig appConfig)
+        private readonly MultiLanguage _multiLanguage;
+
+        public RentalPropertyController(Houses houses,RentalPropertys rentalPropertys, AppConfig appConfig, MultiLanguage multiLanguage) : base(multiLanguage)
         {
             _rentalPropertys = rentalPropertys;
             _houses = houses;
             _appConfig = appConfig;
+            _multiLanguage = multiLanguage;
+
         }
         public IActionResult Index(Guid Id)
         {
-            ViewBag.House = _houses.GetbyId(Id);
-            return View(_rentalPropertys.GetListByHouseId(Id));
+            var house = _houses.GetbyId(Id);
+            if (house != null && house.OwnerId ==_appConfig.OwnerId)
+            {
+                ViewBag.House = house;
+                return View(_rentalPropertys.GetListByHouseId(Id));
+            }
+            else
+            {
+                return RedirectToAction("Index", "House");
+            }
         }
         public IActionResult AddEdit(tblRentalProperty rentalProperty, string Screen)
         {

@@ -28,7 +28,7 @@ namespace eMieter.WebUI.Helper
         }
         public string GetDefaultLanguage()
         {
-            return AvailableLanguages()[0].LanguageCultureName;
+            return AvailableLanguages()[1].LanguageCultureName;
         }
         public void SetLanguage(string lang)
         {

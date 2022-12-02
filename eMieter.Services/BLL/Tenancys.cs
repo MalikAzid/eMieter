@@ -7,7 +7,7 @@ using System.Text;
 
 namespace eMieter.Services.BLL
 {
-   public class Tenancys
+    public class Tenancys
     {
         private readonly eMieterContext _eMieterContext;
         public Tenancys(eMieterContext eMieterContext)
@@ -16,7 +16,7 @@ namespace eMieter.Services.BLL
         }
         public bool AddUpdate(tblTenancy tenancy)
         {
-            var old = _eMieterContext.tblTenancy.Include(i=> i.tblTenant).Where(i => i.Id == tenancy.Id).FirstOrDefault();
+            var old = _eMieterContext.tblTenancy.Include(i => i.tblTenant).Where(i => i.Id == tenancy.Id).FirstOrDefault();
             if (old != null)
             {
                 old.RentalAdditionalCostsAkonto = tenancy.RentalAdditionalCostsAkonto;
@@ -41,13 +41,14 @@ namespace eMieter.Services.BLL
         }
         public List<tblTenancy> GetListByRentalPropertyId(Guid rentalPropertyId)
         {
-            return _eMieterContext.tblTenancy.Include(i=> i.tblTenant).Where(i => i.RentalPropertyId == rentalPropertyId).ToList();
+            return _eMieterContext.tblTenancy.Include(i => i.tblTenant).Where(i => i.RentalPropertyId == rentalPropertyId).OrderByDescending(i => i.RentalStartDate).ToList();
         }
-        public bool IsActiveTenancy(Guid rentalPropertyId,DateTime startDate,DateTime? endDate)
+        public bool IsActiveTenancy(Guid rentalPropertyId, DateTime startDate, DateTime? endDate)
         {
-            //var abcdf = _eMieterContext.tblTenancy.Where(i => i.RentalPropertyId == rentalPropertyId && (i.RentalStartDate < startDate  && (i.RentalEndDate < startDate || i.RentalEndDate != null))).ToList();
-            //var abcd = _eMieterContext.tblTenancy.Where(i => i.RentalPropertyId == rentalPropertyId && ((i.RentalStartDate < startDate  && i.RentalStartDate < endDate) || (i.RentalEndDate > startDate && i.RentalEndDate > endDate))).ToList();
-            //return _eMieterContext.tblTenancy.Where(i => i.RentalPropertyId == rentalPropertyId && i.RentalStartDate >= startDate && i.RentalEndDate <= endDate).Any();
+            if ((_eMieterContext.tblTenancy.Any(t => t.RentalEndDate == null)) || (endDate == null && _eMieterContext.tblTenancy.Any(t => t.RentalEndDate > startDate)) || (_eMieterContext.tblTenancy.Any(t => t.RentalStartDate < endDate && startDate < t.RentalEndDate)))
+            {
+                return true;
+            }
             return false;
         }
         public tblTenancy GetbyId(Guid Id)

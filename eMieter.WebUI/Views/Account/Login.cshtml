@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login</title>
+    <title>@Resource.Login</title>
     <!-- General CSS Files -->
     <link rel="stylesheet" href="~/assets/css/app.min.css">
     <link rel="stylesheet" href="~/assets/bundles/bootstrap-social/bootstrap-social.css">
@@ -21,6 +21,8 @@
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="~/assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='~/assets/img/favicon.ico' />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
 </head>
 
 <body>
@@ -28,9 +30,7 @@
     <div id="app">
         <section class="section">
             <div class="col-sm-3 pull-right mt-2">
-                <span>Language</span>
-                <select class="form-control" asp-items="@(new SelectList(_languages.AvailableLanguages(),"LanguageCultureName","LanguageFullName"))">
-                </select>
+                @Html.Partial("_MultiLanguage")
             </div>
             <div class="clearfix"></div>
             <div class="container mt-5">
@@ -42,59 +42,54 @@
                     <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h4>Login</h4>
+                                <h4>@Resource.Login</h4>
                             </div>
                             <div class="card-body">
                                 <form method="POST" action="/Account/Login" class="needs-validation" novalidate="">
                                     @if (TempData["faild"] != null)
                                     {
                                         <div class="alert alert-danger">
-                                            <span>Email or Password is incorrect.</span>
+                                            <span>@Resource.EmailPasswordIncorrect</span>
                                         </div>
                                     }
                                     @if (TempData["success"] != null)
                                     {
                                         <div class="alert alert-success">
-                                            <span>Your account has been created successfully.</span>
+                                            <span>@Resource.AccountCreateSuccessfully</span>
                                         </div>
                                     }
                                     <div class="form-group">
-                                        <label for="email">Email</label>
+                                        <label for="email">@Resource.Email</label>
                                         <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
                                         <div class="invalid-feedback">
-                                            Please fill in your email
+                                            @Resource.FillEmail
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
-                                            @*<div class="float-right">
-                                                    <a href="auth-forgot-password.html" class="text-small">
-                                                        Forgot Password?
-                                                    </a>
-                                                </div>*@
+                                            <label for="password" class="control-label">@Resource.Password</label>
                                         </div>
                                         <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                                         <div class="invalid-feedback">
-                                            please fill in your password
+                                            @Resource.FillPassword
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
                                             @Html.CheckBoxFor(i=> i.StayLogin,new { @class= "custom-control-input", @id = "remember-me" })
-                                            <label class="custom-control-label" for="remember-me">Stay Logged In</label>
+                                            <label class="custom-control-label" for="remember-me">@Resource.StayLogin</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <button class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Login
+                                            @Resource.Login
                                         </button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="mb-4 text-muted text-center">
-                            Create new account? <a href="/Account/Register">Register</a>
+                            @Resource.CreateNewAccount <a href="/Account/Register">@Resource.Register</a>
                         </div>
                     </div>
                 </div>

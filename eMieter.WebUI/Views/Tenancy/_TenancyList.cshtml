@@ -1,23 +1,24 @@
 ﻿@model List<tblTenancy>
 
-<table class="table table-striped" id="tableTenancyList">
-    <thead>
-        <tr>
+    <div class="table-responsive">
+        <table class="table table-striped" id="tableTenancyList">
+            <thead>
+                <tr>
 
-            <th>@Resource.Tenant</th>
-            <th>@Resource.RentalStartDate</th>
-            <th>@Resource.RentalEndDate</th>
-            <th>@Resource.RentalCostNetMonthly</th>
-            <th>@Resource.RentalAdditionalCostsAkonto</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Count > 0)
+                    <th>@Resource.Tenant</th>
+                    <th>@Resource.RentalStartDate</th>
+                    <th>@Resource.RentalEndDate</th>
+                    <th>@Resource.RentalCostNetMonthly</th>
+                    <th>@Resource.RentalAdditionalCostsAkonto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
         {
-            @foreach (var item in Model)
+                @foreach (var item in Model)
             {
                 var isActive = "";
-                if (item.RentalStartDate <= DateTime.Now && item.RentalEndDate >= DateTime.Now)
+                if (item.RentalStartDate <= DateTime.Now && (item.RentalEndDate >= DateTime.Now || item.RentalEndDate == null))
                 {
                     isActive = "activeRow";
                 }
@@ -30,11 +31,12 @@
                 </tr>
             }
         }
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
 
-<script>
-    $(".gorental").click(function () {
-        location.href = "/Tenancy/Detail/" + $(this).attr("data-Id");
-    });
-</script>
+    <script>
+        $(".gorental").click(function () {
+            location.href = "/Tenancy/Detail/" + $(this).attr("data-Id");
+        });
+    </script>

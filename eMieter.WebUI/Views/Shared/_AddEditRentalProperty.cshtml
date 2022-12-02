@@ -1,4 +1,8 @@
 ﻿@model tblRentalProperty
+@{ 
+    Model.LivingAreaSquareMeters = Convert.ToDecimal(Model.LivingAreaSquareMeters.ToString().Replace(",","."));
+    Model.RoomCount = Convert.ToDecimal(Model.RoomCount.ToString().Replace(",","."));
+}
 
 <div class="modal fade" id="AddEditRentalProperty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">

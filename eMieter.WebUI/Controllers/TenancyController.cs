@@ -10,21 +10,32 @@ using System.Threading.Tasks;
 
 namespace eMieter.WebUI.Controllers
 {
-    public class TenancyController : Controller
+    public class TenancyController : BaseController
     {
         private readonly RentalPropertys _rentalPropertys;
         private readonly Tenancys _tenancys;
         private readonly AppConfig _appConfig;
-        public TenancyController(Tenancys tenancys, RentalPropertys rentalPropertys, AppConfig appConfig)
+        private readonly MultiLanguage _multiLanguage;
+
+        public TenancyController(Tenancys tenancys, RentalPropertys rentalPropertys, AppConfig appConfig, MultiLanguage multiLanguage) : base(multiLanguage)
         {
             _rentalPropertys = rentalPropertys;
             _tenancys = tenancys;
             _appConfig = appConfig;
+            _multiLanguage = multiLanguage;
         }
         public IActionResult Index(Guid Id)
         {
-            ViewBag.RentalProperty = _rentalPropertys.GetbyId(Id);
-            return View(_tenancys.GetListByRentalPropertyId(Id));
+            var tenancyDetail = _rentalPropertys.GetbyId(Id);
+            if (tenancyDetail != null && tenancyDetail.CreatedBy == _appConfig.UserId)
+            {
+                ViewBag.RentalProperty = tenancyDetail;
+                return View(_tenancys.GetListByRentalPropertyId(Id));
+            }
+            else
+            {
+                return RedirectToAction("Index", "House");
+            }
         }
         public IActionResult AddEdit(tblTenancy tenancy, string Screen)
         {
@@ -32,6 +43,10 @@ namespace eMieter.WebUI.Controllers
             tenancy.tblTenant.CreatedBy = _appConfig.UserId;
             if (ModelState.IsValid)
             {
+                if (tenancy.RentalEndDate.HasValue && tenancy.RentalStartDate > tenancy.RentalEndDate)
+                {
+                    return Json(new { message = Resource.EndDateGreaterThan });
+                }
                 var isAnyActive = _tenancys.IsActiveTenancy(tenancy.RentalPropertyId, tenancy.RentalStartDate, tenancy.RentalEndDate);
                 if (isAnyActive)
                 {
@@ -56,7 +71,15 @@ namespace eMieter.WebUI.Controllers
         }
         public IActionResult Detail(Guid Id)
         {
-            return View(_tenancys.GetbyId(Id));
+            var detail = _tenancys.GetbyId(Id);
+            if (detail != null && detail.CreatedBy == _appConfig.UserId)
+            {
+                return View(detail);
+            }
+            else
+            {
+                return RedirectToAction("Index", "House");
+            }
         }
         public IActionResult GetbyId(Guid Id)
         {

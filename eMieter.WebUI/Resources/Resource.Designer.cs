@@ -61,7 +61,16 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Ihr Konto wurde erfolgreich erstellt..
+        /// </summary>
+        public static string AccountCreateSuccessfully {
+            get {
+                return ResourceManager.GetString("AccountCreateSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktion.
         /// </summary>
         public static string Action {
             get {
@@ -70,7 +79,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Haus hinzufügen/bearbeiten.
         /// </summary>
         public static string Add_Edit_House {
             get {
@@ -79,7 +88,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mietobjekt hinzufügen/bearbeiten.
         /// </summary>
         public static string Add_Edit_Rental_Property {
             get {
@@ -88,7 +97,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Benutzer hinzufügen/bearbeiten.
         /// </summary>
         public static string Add_Edit_User {
             get {
@@ -97,7 +106,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mietverhältnis hinzufügen/bearbeiten.
         /// </summary>
         public static string Add_EditTenancy {
             get {
@@ -106,7 +115,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mieter hinzufügen/bearbeiten.
         /// </summary>
         public static string Add_EditTenant {
             get {
@@ -115,7 +124,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Haus hinzufügen.
         /// </summary>
         public static string Add_House {
             get {
@@ -124,7 +133,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mietobjekt hinzufügen.
         /// </summary>
         public static string Add_Rental_Property {
             get {
@@ -133,7 +142,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Nutzer hinzufügen.
         /// </summary>
         public static string Add_User {
             get {
@@ -142,7 +151,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mietvertrag hinzufügen.
         /// </summary>
         public static string AddTenancy {
             get {
@@ -151,7 +160,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mieter hinzufügen.
         /// </summary>
         public static string AddTenant {
             get {
@@ -160,7 +169,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please fill all required fields..
+        ///   Looks up a localized string similar to Bitte alle notwendigen Felder ausfüllen..
         /// </summary>
         public static string AllRequiredFields {
             get {
@@ -169,7 +178,16 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Bereits registriert?.
+        /// </summary>
+        public static string AlreadyRegistered {
+            get {
+                return ResourceManager.GetString("AlreadyRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bist du dir sicher?.
         /// </summary>
         public static string Are_you_sure_ {
             get {
@@ -178,7 +196,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Der Rücken.
         /// </summary>
         public static string Back {
             get {
@@ -187,7 +205,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Kategorie.
         /// </summary>
         public static string Category {
             get {
@@ -196,7 +214,16 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Sprache ändern.
+        /// </summary>
+        public static string ChangeLanguage {
+            get {
+                return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stadt.
         /// </summary>
         public static string City {
             get {
@@ -205,7 +232,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Nah dran.
         /// </summary>
         public static string Close {
             get {
@@ -214,7 +241,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Erstellungsdatum.
         /// </summary>
         public static string Created_Date {
             get {
@@ -223,7 +250,16 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Neuen Account erstellen?.
+        /// </summary>
+        public static string CreateNewAccount {
+            get {
+                return ResourceManager.GetString("CreateNewAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geburtsdatum.
         /// </summary>
         public static string DateOfBirth {
             get {
@@ -232,7 +268,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Löschen.
         /// </summary>
         public static string Delete {
             get {
@@ -241,7 +277,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Bearbeiten.
         /// </summary>
         public static string Edit {
             get {
@@ -250,7 +286,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {
             get {
@@ -259,7 +295,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to E-Mail ist bereits im System vorhanden..
         /// </summary>
         public static string EmailExist {
             get {
@@ -268,7 +304,25 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Email oder Passwort ist falsch..
+        /// </summary>
+        public static string EmailPasswordIncorrect {
+            get {
+                return ResourceManager.GetString("EmailPasswordIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das Enddatum der Miete sollte nach dem Startdatum der Miete liegen..
+        /// </summary>
+        public static string EndDateGreaterThan {
+            get {
+                return ResourceManager.GetString("EndDateGreaterThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EWID.
         /// </summary>
         public static string EWID {
             get {
@@ -277,7 +331,25 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Bitte füllen Sie Ihre E-Mail aus.
+        /// </summary>
+        public static string FillEmail {
+            get {
+                return ResourceManager.GetString("FillEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitte geben Sie Ihr Passwort ein.
+        /// </summary>
+        public static string FillPassword {
+            get {
+                return ResourceManager.GetString("FillPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorname.
         /// </summary>
         public static string FirstName {
             get {
@@ -286,7 +358,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Boden.
         /// </summary>
         public static string Floor {
             get {
@@ -295,7 +367,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Nachname.
         /// </summary>
         public static string LastName {
             get {
@@ -304,7 +376,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Wohnfläche Quadratmeter.
         /// </summary>
         public static string Living_Area_Square_Meters {
             get {
@@ -313,7 +385,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Ort.
         /// </summary>
         public static string Location {
             get {
@@ -331,7 +403,16 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Ausloggen.
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Haus verwalten.
         /// </summary>
         public static string Manage_House {
             get {
@@ -340,7 +421,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mietobjekte verwalten.
         /// </summary>
         public static string Manage_Rental_Property {
             get {
@@ -349,7 +430,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Benutzer verwalten.
         /// </summary>
         public static string Manage_Users {
             get {
@@ -358,7 +439,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Hausdetails verwalten.
         /// </summary>
         public static string ManageHouseDetail {
             get {
@@ -367,7 +448,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mietobjektdetails verwalten.
         /// </summary>
         public static string ManageRentalPropertyDetail {
             get {
@@ -376,7 +457,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mietvertrag verwalten.
         /// </summary>
         public static string ManageTenancy {
             get {
@@ -385,7 +466,16 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mietvertragsdetails verwalten.
+        /// </summary>
+        public static string ManageTenancyDetail {
+            get {
+                return ResourceManager.GetString("ManageTenancyDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mieter verwalten.
         /// </summary>
         public static string ManageTenant {
             get {
@@ -394,7 +484,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Nein.
         /// </summary>
         public static string No {
             get {
@@ -403,7 +493,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Passwort.
         /// </summary>
         public static string Password {
             get {
@@ -412,7 +502,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Postleitzahl.
         /// </summary>
         public static string PostCode {
             get {
@@ -421,7 +511,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Rate.
         /// </summary>
         public static string Rate {
             get {
@@ -439,7 +529,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mietgegenstand.
         /// </summary>
         public static string Rental_Property {
             get {
@@ -448,7 +538,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mietnebenkosten Akonto.
         /// </summary>
         public static string RentalAdditionalCostsAkonto {
             get {
@@ -457,7 +547,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mietkosten netto monatlich.
         /// </summary>
         public static string RentalCostNetMonthly {
             get {
@@ -466,7 +556,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Enddatum der Miete.
         /// </summary>
         public static string RentalEndDate {
             get {
@@ -475,7 +565,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Startdatum der Miete.
         /// </summary>
         public static string RentalStartDate {
             get {
@@ -484,7 +574,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Zimmeranzahl.
         /// </summary>
         public static string Room_Count {
             get {
@@ -493,7 +583,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Speichern.
         /// </summary>
         public static string Save {
             get {
@@ -502,7 +592,16 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Bleibe eingeloggt.
+        /// </summary>
+        public static string StayLogin {
+            get {
+                return ResourceManager.GetString("StayLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Straße.
         /// </summary>
         public static string Street {
             get {
@@ -511,16 +610,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Erfolg.
         /// </summary>
         public static string Success {
             get {
@@ -529,7 +619,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Das Mietverhältnis ist in diesem Zeitraum bereits aktiv..
         /// </summary>
         public static string TenancyisActive {
             get {
@@ -538,7 +628,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mieterin.
         /// </summary>
         public static string Tenant {
             get {
@@ -547,7 +637,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Ja.
         /// </summary>
         public static string Yes {
             get {
@@ -556,7 +646,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Sie möchten diesen Datensatz löschen!.
         /// </summary>
         public static string you_want_to_delete_this_record_ {
             get {
@@ -565,7 +655,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Ihre wurde erfolgreich gespeichert..
         /// </summary>
         public static string Your_has_been_saved_successfully_ {
             get {
@@ -574,7 +664,7 @@ namespace eMieter.WebUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Ihr Datensatz wurde gelöscht..
         /// </summary>
         public static string Your_record_has_been_deleted_ {
             get {

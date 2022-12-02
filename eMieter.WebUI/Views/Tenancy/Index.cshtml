@@ -17,8 +17,8 @@
                 <h4>@Resource.ManageRentalPropertyDetail </h4>
             </div>
             <div class="col-sm-6">
-                <a href="Javascript:;" onclick="EditRentalProperty()" class="btn btn-info pull-right ml-2">@Resource.Edit</a>
-                <a href="javascript:;" onclick="DeleteRentalProperty('@_rentalProperty.Id','@_rentalProperty.HouseId')" class="btn btn-danger pull-right">@Resource.Delete</a>
+                <a href="javascript:;" onclick="DeleteRentalProperty('@_rentalProperty.Id','@_rentalProperty.HouseId')" class="btn btn-danger pull-right ml-2">@Resource.Delete</a>
+                <a href="Javascript:;" onclick="EditRentalProperty()" class="btn btn-info pull-right">@Resource.Edit</a>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -60,7 +60,7 @@
         var frm = $("#frmTenancySubmit");
         if (frm.valid()) {
             if (new Date($(document).find("#txtRentalStartDate").val()) > new Date($(document).find("#txtRentalEndDate").val())) {
-                swal("", "Rental end date should be greater than rental start date.", "error");
+                swal("", "@Resource.EndDateGreaterThan", "error");
                 return false;
             }
             $(".loader").show();

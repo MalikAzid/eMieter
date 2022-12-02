@@ -1,31 +1,31 @@
 ﻿@model List<tblUser>
 
-<table class="table table-striped" id="tableUserList">
-    <thead>
-        <tr>
+    <div class="table-responsive">
+        <table class="table table-striped" id="tableUserList">
+            <thead>
+                <tr>
 
-            <th>@Resource.Email</th>
-            <th>@Resource.Password</th>
-            <th>@Resource.Created_Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Count > 0)
-        {
-            @foreach (var item in Model)
-            {
-                <tr class="gorental tablerowhover" data-Id="@item.Id">
-                    <td>@item.Email</td>
-                    <td>@item.Password</td>
-                    <td>@item.CreatedDate</td>
+                    <th>@Resource.Email</th>
+                    <th>@Resource.Password</th>
                 </tr>
-            }
-        }
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr class="gorental tablerowhover" data-Id="@item.Id">
+                            <td>@item.Email</td>
+                            <td>@item.Password</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
 
-<script>
-    $(".gorental").click(function () {
-        location.href = "/User/Detail/" + $(this).attr("data-Id");
-    });
-</script>
+    <script>
+        $(".gorental").click(function () {
+            location.href = "/User/Detail/" + $(this).attr("data-Id");
+        });
+    </script>

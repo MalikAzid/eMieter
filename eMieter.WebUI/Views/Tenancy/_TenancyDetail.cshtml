@@ -26,14 +26,16 @@
         <label>@Resource.DateOfBirth: </label> <span>@(string.Format("{0:MM/dd/yyyy}",Model.tblTenant.DateOfBirth))</span>
     </div>
     <div class="col-sm-12">
-        <label>@Resource.Rate: </label>  <div class="rating-box">
-                                             <div class="rating-container">
-                                                 @Html.RadioButtonFor(i => i.tblTenant.Rate, "5", new { id = "star-5", @class = "PSR",disabled="disabled" }) <label for="star-5"><i class="fa fa-star"></i></label>
-                                                 @Html.RadioButtonFor(i => i.tblTenant.Rate, "4", new { id = "star-4", @class = "PSR",disabled="disabled" }) <label for="star-4"><i class="fa fa-star"></i></label>
-                                                 @Html.RadioButtonFor(i => i.tblTenant.Rate, "3", new { id = "star-3", @class = "PSR",disabled="disabled" }) <label for="star-3"><i class="fa fa-star"></i></label>
-                                                 @Html.RadioButtonFor(i => i.tblTenant.Rate, "2", new { id = "star-2", @class = "PSR",disabled="disabled" }) <label for="star-2"><i class="fa fa-star"></i></label>
-                                                 @Html.RadioButtonFor(i => i.tblTenant.Rate, "1", new { id = "star-1", @class = "PSR",disabled="disabled" }) <label for="star-1"><i class="fa fa-star"></i></label>
-                                             </div>
+        <label>@Resource.Rate: </label>  
+        <div class="d-inline-block">
+            <div class="rating-container">
+                @{var rate = Model.tblTenant.Rate;}
+                 <label for="star-1" class="@(rate >= 1 ? "gold" : "")"><i class="fa fa-star"></i></label>
+                 <label for="star-2" class="@(rate >= 2 ? "gold" : "")"><i class="fa fa-star"></i></label>
+                 <label for="star-3" class="@(rate >= 3 ? "gold" : "")"><i class="fa fa-star"></i></label>
+                 <label for="star-4" class="@(rate >= 4 ? "gold" : "")"><i class="fa fa-star"></i></label>
+                 <label for="star-5" class="@(rate >= 5 ? "gold" : "")"><i class="fa fa-star"></i></label>
+            </div>
         </div>
     </div>
     <div class="clearfix"></div>

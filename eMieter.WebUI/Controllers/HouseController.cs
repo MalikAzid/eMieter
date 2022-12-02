@@ -10,14 +10,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eMieter.WebUI.Controllers
 {
-    public class HouseController : Controller
+    public class HouseController : BaseController
     {
         private readonly Houses _houses;
         private readonly AppConfig _appConfig;
-        public HouseController(Houses houses, AppConfig appConfig)
+        private readonly MultiLanguage _multiLanguage;
+
+        public HouseController(Houses houses, AppConfig appConfig, MultiLanguage multiLanguage) : base(multiLanguage)
         {
             _houses = houses;
             _appConfig = appConfig;
+            _multiLanguage = multiLanguage;
         }
         public IActionResult Index()
         {

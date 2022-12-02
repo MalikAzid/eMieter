@@ -1,29 +1,31 @@
 ﻿@model List<tblRentalProperty>
 
-<table class="table table-striped" id="tableRentalPropertyList">
-    <thead>
-        <tr>
+    <div class="table-responsive">
 
-            <th>@Resource.EWID</th>
-            <th>@Resource.Living_Area_Square_Meters</th>
-            <th>@Resource.Room_Count</th>
-            <th>@Resource.Floor</th>
-            <th>@Resource.Location</th>
-            <th>@Resource.FirstName</th>
-            <th>@Resource.LastName</th>
-            <th>@Resource.RentalCostNetMonthly</th>
-            <th>@Resource.RentalAdditionalCostsAkonto</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Count > 0)
+        <table class="table table-striped" id="tableRentalPropertyList">
+            <thead>
+                <tr>
+
+                    <th>@Resource.EWID</th>
+                    <th>@Resource.Living_Area_Square_Meters</th>
+                    <th>@Resource.Room_Count</th>
+                    <th>@Resource.Floor</th>
+                    <th>@Resource.Location</th>
+                    <th>@Resource.FirstName</th>
+                    <th>@Resource.LastName</th>
+                    <th>@Resource.RentalCostNetMonthly</th>
+                    <th>@Resource.RentalAdditionalCostsAkonto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
         {
-            @foreach (var item in Model)
+                @foreach (var item in Model)
             {
                 var activeTenancy = new tblTenancy();
                 if (item.tblTenancy != null)
                 {
-                    activeTenancy = item.tblTenancy.Where(i => i.RentalStartDate <= DateTime.Now && i.RentalEndDate >= DateTime.Now).FirstOrDefault();
+                    activeTenancy = item.tblTenancy.Where(i => i.RentalStartDate <= DateTime.Now && (i.RentalEndDate >= DateTime.Now || i.RentalEndDate == null)).FirstOrDefault();
                 }
                 else
                     activeTenancy = null;
@@ -35,34 +37,34 @@
                     <td>@item.Location</td>
                     @if (activeTenancy != null)
                     {
-                        <td>
-                            @activeTenancy.tblTenant.FirstName
-                        </td>
-                        <td>
-                            @activeTenancy.tblTenant.LastName
-                        </td>
-                        <td>
-                            @activeTenancy.RentalCostNetMonthly
-                        </td>
-                        <td>
-                            @activeTenancy.RentalAdditionalCostsAkonto
-                        </td>
+                    <td>
+                        @activeTenancy.tblTenant.FirstName
+                    </td>
+                    <td>
+                        @activeTenancy.tblTenant.LastName
+                    </td>
+                    <td>
+                        @activeTenancy.RentalCostNetMonthly
+                    </td>
+                    <td>
+                        @activeTenancy.RentalAdditionalCostsAkonto
+                    </td>
                     }
                     else
                     {
-                        <td>N/A</td>
-                        <td>N/A</td>
-                        <td>N/A</td>
-                        <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
                     }
                 </tr>
             }
         }
-    </tbody>
-</table>
-
-<script>
-    $(".gorental").click(function () {
-        location.href = "/Tenancy/Index/" + $(this).attr("data-Id");
-    });
-</script>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        $(".gorental").click(function () {
+            location.href = "/Tenancy/Index/" + $(this).attr("data-Id");
+        });
+    </script>

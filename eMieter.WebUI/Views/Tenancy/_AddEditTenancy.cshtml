@@ -1,31 +1,35 @@
 ﻿@model tblTenancy
 @inject eMieter.Services.BLL.Tenants _tenants
+@{
+    Model.RentalCostNetMonthly = Convert.ToDecimal(Model.RentalCostNetMonthly.ToString().Replace(",","."));
+    Model.RentalAdditionalCostsAkonto = Convert.ToDecimal(Model.RentalAdditionalCostsAkonto.ToString().Replace(",","."));
+}
 
-    <style>
-        .rating-box {
-            display: inline-block;
+<style>
+    .rating-box {
+        display: inline-block;
+    }
+
+        .rating-box .rating-container {
+            direction: rtl !important;
         }
 
-            .rating-box .rating-container {
-                direction: rtl !important;
+            .rating-box .rating-container label {
+                display: inline-block;
+                color: #d4d4d4;
+                cursor: pointer;
+                font-size: 30px;
+                transition: color 0.2s;
             }
 
-                .rating-box .rating-container label {
-                    display: inline-block;
-                    color: #d4d4d4;
-                    cursor: pointer;
-                    font-size: 30px;
-                    transition: color 0.2s;
-                }
+            .rating-box .rating-container input {
+                display: none;
+            }
 
-                .rating-box .rating-container input {
-                    display: none;
+                .rating-box .rating-container label:hover, .rating-box .rating-container label:hover ~ label, .rating-box .rating-container input:checked ~ label {
+                    color: gold;
                 }
-
-                    .rating-box .rating-container label:hover, .rating-box .rating-container label:hover ~ label, .rating-box .rating-container input:checked ~ label {
-                        color: gold;
-                    }
-    </style>
+</style>
 <div class="modal fade" id="AddEditTenancy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -102,3 +106,20 @@
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+        $('#txtDateOfBirth').attr('max', maxDate);
+    });
+</script>
