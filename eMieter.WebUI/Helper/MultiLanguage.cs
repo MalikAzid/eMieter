@@ -19,7 +19,7 @@ namespace eMieter.WebUI.Helper
         {
             List<Languages> lstLanguage = new List<Languages>();
             lstLanguage.Add(new Languages() { LanguageFullName = "English", LanguageCultureName = "en" });
-            lstLanguage.Add(new Languages() { LanguageFullName = "German", LanguageCultureName = "de" });
+            lstLanguage.Add(new Languages() { LanguageFullName = "German", LanguageCultureName = "de-ch" });
             return lstLanguage;
         }
         public bool IsLanguageAvailable(string lang)

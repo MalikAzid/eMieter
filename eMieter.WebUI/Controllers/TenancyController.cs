@@ -27,7 +27,8 @@ namespace eMieter.WebUI.Controllers
         public IActionResult Index(Guid Id)
         {
             var tenancyDetail = _rentalPropertys.GetbyId(Id);
-            if (tenancyDetail != null && tenancyDetail.CreatedBy == _appConfig.UserId)
+            var ownerId = _rentalPropertys.GetOwnerIdByRentalPropertyId(Id);
+            if (tenancyDetail != null && ownerId == _appConfig.OwnerId)
             {
                 ViewBag.RentalProperty = tenancyDetail;
                 return View(_tenancys.GetListByRentalPropertyId(Id));
@@ -72,7 +73,8 @@ namespace eMieter.WebUI.Controllers
         public IActionResult Detail(Guid Id)
         {
             var detail = _tenancys.GetbyId(Id);
-            if (detail != null && detail.CreatedBy == _appConfig.UserId)
+            var ownerId = _tenancys.GetOwnerIdByTenancyId(Id);
+            if (detail != null && ownerId == _appConfig.UserId)
             {
                 return View(detail);
             }

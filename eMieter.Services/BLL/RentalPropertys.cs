@@ -50,5 +50,9 @@ namespace eMieter.Services.BLL
             }
             return _eMieterContext.SaveChanges() > 0;
         }
+        public Guid GetOwnerIdByRentalPropertyId(Guid rentalPropertyId)
+        {
+            return _eMieterContext.tblRentalProperty.Include(i => i.tblHouse).Where(i => i.Id == rentalPropertyId).Select(i=> i.tblHouse.OwnerId).FirstOrDefault();
+        }
     }
 }

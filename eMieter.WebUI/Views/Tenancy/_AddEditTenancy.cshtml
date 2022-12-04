@@ -1,9 +1,5 @@
 ﻿@model tblTenancy
 @inject eMieter.Services.BLL.Tenants _tenants
-@{
-    Model.RentalCostNetMonthly = Convert.ToDecimal(Model.RentalCostNetMonthly.ToString().Replace(",","."));
-    Model.RentalAdditionalCostsAkonto = Convert.ToDecimal(Model.RentalAdditionalCostsAkonto.ToString().Replace(",","."));
-}
 
 <style>
     .rating-box {

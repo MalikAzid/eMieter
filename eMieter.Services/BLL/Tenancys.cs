@@ -45,7 +45,7 @@ namespace eMieter.Services.BLL
         }
         public bool IsActiveTenancy(Guid rentalPropertyId, DateTime startDate, DateTime? endDate)
         {
-            if ((_eMieterContext.tblTenancy.Any(t => t.RentalEndDate == null)) || (endDate == null && _eMieterContext.tblTenancy.Any(t => t.RentalEndDate > startDate)) || (_eMieterContext.tblTenancy.Any(t => t.RentalStartDate < endDate && startDate < t.RentalEndDate)))
+            if ((_eMieterContext.tblTenancy.Any(t => t.RentalPropertyId == rentalPropertyId && t.RentalEndDate == null)) || (endDate == null && _eMieterContext.tblTenancy.Any(t => t.RentalPropertyId == rentalPropertyId && t.RentalEndDate > startDate)) || (_eMieterContext.tblTenancy.Any(t => t.RentalPropertyId == rentalPropertyId && t.RentalStartDate < endDate && startDate < t.RentalEndDate)))
             {
                 return true;
             }
@@ -63,6 +63,10 @@ namespace eMieter.Services.BLL
                 _eMieterContext.tblTenancy.Remove(old);
             }
             return _eMieterContext.SaveChanges() > 0;
+        }
+        public Guid GetOwnerIdByTenancyId(Guid tenancyId)
+        {
+            return _eMieterContext.tblTenancy.Include(i => i.tblRentalProperty).ThenInclude(i => i.tblHouse).Where(i => i.Id == tenancyId).Select(i => i.tblRentalProperty.tblHouse.OwnerId).FirstOrDefault();
         }
     }
 }
